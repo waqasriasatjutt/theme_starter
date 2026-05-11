@@ -17,7 +17,7 @@
  * Props are optional — the portal renders the markup statically; tokens like
  * {{site_title}} are substituted server-side on the live site.
  */
-export default function Hero({ eyebrow = "{{eyebrow}}", heading = "Headline that says exactly what you do", subtitle = "One or two sentences of supporting copy — work in {{focus_keyword}} naturally.", primaryHref = "/contact", primaryLabel = "Get started", secondaryHref = "/services", secondaryLabel = "See what we do" } = {}) {
+export default function Hero({ eyebrow = "What we do", heading = "Headline that says exactly what you do", subtitle = "One or two sentences of supporting copy — work your focus keyword naturally.", primaryHref = "/contact", primaryLabel = "Get started", secondaryHref = "/services", secondaryLabel = "See what we do" } = {}) {
   return (
     <section className="aurora-hero">
       <div className="wrap">
