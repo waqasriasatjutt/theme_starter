@@ -1,20 +1,20 @@
-/** Call-to-action — React section. Built to sections/cta.html. Styles in ./Cta.css. */
-export const meta = { name: "Call-to-action band", slug: "aurora-cta", category: "Aurora • Conversion", sequence: 30, description: "Full-width gradient band with heading and button." };
+export const meta = { name: "Call to action", slug: "base-cta", category: "Base • Conversion", sequence: 80, description: "A full-width band with a heading, a line of text and a button." };
 
-export default function Cta({
-  heading = "Ready when you are",
-  subtitle = "Tell us what you're trying to grow and we'll map a plan.",
-  href = "/contact", label = "Get in touch",
+export default function CTA({
+  heading = "Ready to get started?",
+  text = "Tell us what you want to build. We will get back to you within one business day.",
+  buttonLabel = "Contact us",
+  buttonHref = "/contact",
 } = {}) {
   return (
-    <section className="section">
-      <div className="wrap">
-        <div className="aurora-cta">
-          <h2 className="h2">{heading}</h2>
-          <p className="lead" style={{ margin: "10px auto 0" }}>{subtitle}</p>
-          <div className="actions" style={{ justifyContent: "center" }}>
-            <a className="btn btn-primary" href={href}>{label}</a>
+    <section className="section cta-section">
+      <div className="container">
+        <div className="cta-band">
+          <div className="cta-copy">
+            <h2 className="h2 cta-title">{heading}</h2>
+            <p className="cta-text">{text}</p>
           </div>
+          <a className="btn btn-lg cta-btn" href={buttonHref}>{buttonLabel}</a>
         </div>
       </div>
     </section>

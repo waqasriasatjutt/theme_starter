@@ -1,7 +1,0 @@
-{
-  "name": "FAQ — accordion",
-  "slug": "aurora-faq",
-  "category": "Aurora • Content",
-  "sequence": 40,
-  "description": "Native <details> accordion, no JavaScript."
-}

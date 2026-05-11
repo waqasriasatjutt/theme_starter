@@ -1,21 +1,28 @@
-/** FAQ — React section (native <details> accordion, no JS). Built to sections/faq.html. Styles in ./Faq.css. */
-export const meta = { name: "FAQ — accordion", slug: "aurora-faq", category: "Aurora • Content", sequence: 40, description: "Native <details> accordion, no JavaScript." };
+export const meta = { name: "FAQ", slug: "base-faq", category: "Base • Content", sequence: 70, description: "Accordion of questions and answers — native <details>, no JavaScript." };
 
-export default function Faq({
-  heading = "Frequently asked",
+export default function FAQ({
+  heading = "Questions, answered",
+  text = "Cover the things people ask before they buy.",
   items = [
-    { q: "How fast can we launch?", a: "Most sites go live within two weeks." },
-    { q: "Do you handle hosting?", a: "Yes — fully managed, monitored and backed up." },
-    { q: "Can we edit content ourselves?", a: "Yes — drag-drop builder plus full code access." },
+    { q: "How long does it take?", a: "Most projects go live in two to four weeks, depending on scope." },
+    { q: "Can we edit it ourselves afterwards?", a: "Yes. You get a visual editor plus full access to the code." },
+    { q: "Do you handle hosting?", a: "Yes, fully managed, monitored and backed up. You can also self-host." },
+    { q: "What does it cost?", a: "See the pricing section above, or get in touch for a custom quote." },
   ],
 } = {}) {
   return (
     <section className="section">
-      <div className="wrap" style={{ maxWidth: "760px" }}>
-        <h2 className="h2" style={{ textAlign: "center" }}>{heading}</h2>
-        <div className="aurora-faq" style={{ marginTop: "20px" }}>
+      <div className="container faq-container">
+        <div className="section-head">
+          <h2 className="h2">{heading}</h2>
+          <p className="lead">{text}</p>
+        </div>
+        <div className="faq-list">
           {items.map((it, i) => (
-            <details key={i}><summary>{it.q}</summary><p>{it.a}</p></details>
+            <details className="faq-item" key={i}>
+              <summary className="faq-q">{it.q}</summary>
+              <p className="faq-a">{it.a}</p>
+            </details>
           ))}
         </div>
       </div>

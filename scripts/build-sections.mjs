@@ -1,17 +1,18 @@
 /**
- * build-sections — render each React section (components/sections/*.jsx) to plain
- * HTML and write sections/<slug>.{html,css,json}.
- *
- * The React components are the source of truth for the theme. This produces what
- * the Websites Portal imports (it reads sections/*). Run after editing a section:
+ * build-sections — render each React section component to plain HTML and write
+ * sections/<slug>.{html,css,json,js}, the artifacts the Websites Portal imports.
  *
  *     npm install            # first time only
  *     npm run build:sections
  *     git add -A && git commit -m "..." && git push
- *     # then in the portal: open the theme → "Fetch from GitHub"
+ *     # then in the portal: open the theme -> "Fetch from GitHub"
  *
- * Each section file should `export const meta = { name, slug, category, sequence, description }`.
- * The output file names come from meta.slug (falling back to the lowercased file name),
+ * A section file in components/sections/ should:
+ *     export const meta = { name, slug, category, sequence, description }
+ *     export default function MySection(props = {}) { return (<section> ... </section>); }
+ * Optional siblings: <Name>.css (styles) and <Name>.js (a `(function(el){ ... })(root)`
+ * script that runs on the live site after the section mounts — for interactive bits).
+ * Output file names come from meta.slug (falling back to the lowercased file name),
  * so the portal section slugs match what you declare in the component.
  */
 import esbuild from "esbuild";
@@ -29,17 +30,15 @@ mkdirSync(OUT, { recursive: true });
 const jsxFiles = readdirSync(SRC).filter((f) => f.endsWith(".jsx"));
 if (!jsxFiles.length) { console.error("No .jsx sections found in components/sections/"); process.exit(1); }
 
+let n = 0;
 for (const f of jsxFiles) {
-  const base = f.replace(/\.jsx$/, "");          // e.g. "Hero"
+  const base = f.replace(/\.jsx$/, "");
   const tmp = join(SRC, `.__build_${base}.mjs`);
   await esbuild.build({
     entryPoints: [join(SRC, f)],
     outfile: tmp,
-    bundle: true,
-    format: "esm",
-    platform: "node",
-    jsx: "automatic",
-    jsxImportSource: "react",
+    bundle: true, format: "esm", platform: "node",
+    jsx: "automatic", jsxImportSource: "react",
     external: ["react", "react-dom", "react-dom/server", "react/jsx-runtime", "react/jsx-dev-runtime"],
     loader: { ".css": "empty" },                 // components shouldn't import CSS, but be safe
     logLevel: "silent",
@@ -53,22 +52,25 @@ for (const f of jsxFiles) {
   const meta = mod.meta || {};
   const slug = (meta.slug || base.toLowerCase()).trim();
 
-  const html = renderToStaticMarkup(React.createElement(Comp));
-  writeFileSync(join(OUT, `${slug}.html`), html + "\n");
+  writeFileSync(join(OUT, `${slug}.html`), renderToStaticMarkup(React.createElement(Comp)) + "\n");
 
   const cssSrc = join(SRC, `${base}.css`);
   const hasCss = existsSync(cssSrc);
   if (hasCss) copyFileSync(cssSrc, join(OUT, `${slug}.css`));
 
-  const json = {
+  const jsSrc = join(SRC, `${base}.js`);
+  const hasJs = existsSync(jsSrc);
+  if (hasJs) copyFileSync(jsSrc, join(OUT, `${slug}.js`));
+
+  writeFileSync(join(OUT, `${slug}.json`), JSON.stringify({
     name: meta.name || base,
     slug,
     category: meta.category || "Sections",
     sequence: meta.sequence ?? 10,
     description: meta.description || "",
-  };
-  writeFileSync(join(OUT, `${slug}.json`), JSON.stringify(json, null, 2) + "\n");
+  }, null, 2) + "\n");
 
-  console.log(`built  sections/${slug}.html  +json` + (hasCss ? "  +css" : "") + `   (${base}.jsx)`);
+  n++;
+  console.log(`built  sections/${slug}.html  +json` + (hasCss ? "  +css" : "") + (hasJs ? "  +js" : "") + `   (${base}.jsx)`);
 }
-console.log("\nDone. Commit & push, then re-fetch the theme in the portal.");
+console.log(`\nDone — ${n} section(s). Commit & push, then re-fetch the theme in the portal.`);

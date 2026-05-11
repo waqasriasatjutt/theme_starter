@@ -1,6 +1,0 @@
-.aurora-cta {
-  text-align: center;
-  border-radius: var(--radius, 16px);
-  padding: clamp(48px, 8vw, 72px) 24px;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--primary, #0ea5e9) 22%, transparent), color-mix(in srgb, var(--accent, #9eff00) 12%, transparent));
-}

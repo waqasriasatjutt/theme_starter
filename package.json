@@ -1,8 +1,8 @@
 {
-  "name": "theme-starter",
-  "version": "1.1.0",
+  "name": "base-theme",
+  "version": "2.0.0",
   "private": true,
-  "description": "A Websites Portal theme written entirely in React (JSX). `components/sections/*.jsx` are the source of truth; `npm run build:sections` renders them to `sections/*` which the portal imports as editable drag-drop blocks.",
+  "description": "Base — a Websites Portal theme written entirely in React (JSX). components/sections/*.jsx are the source of truth; `npm run build:sections` renders them to sections/* which the portal imports as editable drag-drop blocks. Fork it and add your own components.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
