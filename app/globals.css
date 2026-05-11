@@ -1,0 +1,9 @@
+/* Preview stylesheet — pulls in the theme + every section's CSS so `npm run dev`
+   shows the theme exactly as the portal will. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;800&display=swap");
+@import "../theme.css";
+@import "../sections/hero.css";
+@import "../sections/cta.css";
+@import "../sections/faq.css";
+@import "../sections/footer.css";
+/* features uses inline styles, no separate file */

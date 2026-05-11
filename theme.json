@@ -1,0 +1,21 @@
+{
+  "name": "Aurora Starter",
+  "slug": "aurora-starter",
+  "version": "1.0.0",
+  "description": "Clean, modern, responsive starter theme. Fork this, change the colours/fonts in theme.json, tweak theme.css, add or edit sections, then Fetch it in the portal (Themes -> GitHub import).",
+  "colors": {
+    "primary": "#0ea5e9",
+    "accent":  "#9eff00",
+    "bg":      "#0a0e27",
+    "text":    "#f8fafc",
+    "muted":   "#94a3b8"
+  },
+  "fonts": {
+    "body":    "Inter",
+    "display": "Space Grotesk"
+  },
+  "extra_tokens": {
+    "radius": "16px",
+    "maxw":   "1120px"
+  }
+}

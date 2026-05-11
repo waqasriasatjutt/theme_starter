@@ -1,0 +1,7 @@
+.aurora-hero {
+  padding: clamp(80px, 12vw, 130px) 0 clamp(64px, 9vw, 100px);
+  text-align: center;
+  background: radial-gradient(1200px 600px at 50% -10%, color-mix(in srgb, var(--primary, #0ea5e9) 18%, transparent), transparent);
+}
+.aurora-hero .lead { margin: 0 auto; }
+.aurora-hero .actions { justify-content: center; }

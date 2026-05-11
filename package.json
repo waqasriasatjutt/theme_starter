@@ -1,0 +1,17 @@
+{
+  "name": "theme-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter theme for the Websites Portal — a Next.js (React) project you can run, test and deploy, whose sections/* are imported into the portal as drag-drop blocks.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.2.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
