@@ -1,9 +1,11 @@
-/* Preview stylesheet — pulls in the theme + every section's CSS so `npm run dev`
-   shows the theme exactly as the portal will. */
+/* Pulls in the theme stylesheet + every section's co-located CSS, so `npm run dev`
+   renders the components with their styles. theme.css has the shared primitives
+   (.wrap, .section, .h1/.h2/.h3, .btn, .surface, .grid-auto …); each Section.css
+   adds only what that section needs. Add a line here when you add a section .css. */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;800&display=swap");
 @import "../theme.css";
-@import "../sections/hero.css";
-@import "../sections/cta.css";
-@import "../sections/faq.css";
-@import "../sections/footer.css";
-/* features uses inline styles, no separate file */
+@import "../components/sections/Hero.css";
+@import "../components/sections/Cta.css";
+@import "../components/sections/Faq.css";
+@import "../components/sections/Footer.css";
+/* Features.jsx uses inline styles + theme.css primitives, so it has no .css file. */

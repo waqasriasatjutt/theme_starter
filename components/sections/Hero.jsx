@@ -1,23 +1,19 @@
 /**
- * Hero section — React version (example).
- *
- * Authoring a section in React is fine. Two rules so the portal can use it:
- *   1. Output the SAME markup that lives in `sections/hero.html` (the portal
- *      reads the .html file, not this component). Keep them in sync — easiest
- *      is to render this component to static HTML and write it to that file:
- *
- *        import { renderToStaticMarkup } from "react-dom/server";
- *        import Hero from "./components/sections/Hero.jsx";
- *        fs.writeFileSync("sections/hero.html", renderToStaticMarkup(<Hero/>));
- *
- *   2. Put the section's styles in `sections/hero.css` (the portal reads that),
- *      not CSS-in-JS — and use the theme variables (var(--primary), var(--bg),
- *      var(--text), var(--accent), var(--muted), var(--font-display)).
- *
- * Props are optional — the portal renders the markup statically; tokens like
- * {{site_title}} are substituted server-side on the live site.
+ * Hero — React section. This file is the source of truth for this block:
+ * `npm run build:sections` renders it to `sections/hero.html` (which the portal
+ * imports and lets editors modify visually). Wire APIs/state here for the live
+ * site; tokens like {{site_title}} pass through and resolve on the live site.
+ * Styles: ./Hero.css. Block metadata: the `meta` export below.
  */
-export default function Hero({ eyebrow = "What we do", heading = "Headline that says exactly what you do", subtitle = "One or two sentences of supporting copy — work your focus keyword naturally.", primaryHref = "/contact", primaryLabel = "Get started", secondaryHref = "/services", secondaryLabel = "See what we do" } = {}) {
+export const meta = { name: "Hero — centered", slug: "aurora-hero", category: "Aurora • Heroes", sequence: 10, description: "Centered headline, subtitle, two CTAs." };
+
+export default function Hero({
+  eyebrow = "What we do",
+  heading = "Headline that says exactly what you do",
+  subtitle = "One or two sentences of supporting copy. Use your focus keyword naturally.",
+  primaryHref = "/contact", primaryLabel = "Get started",
+  secondaryHref = "/services", secondaryLabel = "See what we do",
+} = {}) {
   return (
     <section className="aurora-hero">
       <div className="wrap">
