@@ -1,7 +1,7 @@
 export const meta = { name: "Site header", slug: "base-header", category: "Base • Layout", sequence: 10, description: "Logo, navigation links and a call-to-action button." };
 
 export default function SiteHeader({
-  brand = "YourBrand",
+  brand = "{{site_title}}",
   brandHref = "/",
   links = [
     { label: "Home", href: "/" },
